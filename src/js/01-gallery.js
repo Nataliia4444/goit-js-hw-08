@@ -5,7 +5,7 @@ import { galleryItems } from './gallery-items';
 const gallery = document.querySelector('.gallery');
 const img = galleryItems
   .map(
-    img => `<li class="gallery__item">
+    img => `<li class="gallery__item list">
    <a class="gallery__link" href=${img.original}>
       <img class="gallery__image" src=${img.preview} alt=${img.description} />
    </a>
