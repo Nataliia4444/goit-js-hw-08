@@ -24,39 +24,26 @@ const feedback = {};
 
 form.addEventListener('input', throttle(onInputForm, 1000));
 function onInputForm(e) {
-  if (e.target.name === 'email') {
-    feedback.email = e.target.value;
-  } else if ((e.target.name = 'message')) {
-    feedback.message = e.target.value;
+  const message = form.elements.message.value;
+  const email = form.elements.email.value;
+
+  feedback.email = email;
+  feedback.message = message;
+
+  if (message === '') {
+    feedback.message = '';
+  } else if (email === '') {
+    feedback.email = '';
   }
+
   localStorage.setItem(KEY, JSON.stringify(feedback));
 }
 function populateTextarea() {
   const saveMessage = localStorage.getItem(KEY);
   const value = JSON.parse(saveMessage);
-  if (saveMessage !== undefined) {
+  if (saveMessage) {
     message.value = value.message;
     input.value = value.email;
   }
 }
-// 54
 populateTextarea();
-
-// form.addEventListener('input', throttle(onInputForm, 1000));
-// function onInputForm(e) {
-//   if (e.target.name === 'email') {
-//     if (e.target.value) {
-//       feedback.email = e.target.value;
-//     } else {
-//       feedback.email = 'email';
-//     }
-//   }
-//   if (e.target.name === 'message') {
-//     if (e.target.value) {
-//       feedback.message = e.target.value;
-//     } else {
-//       feedback.message = 'message';
-//     }
-//   }
-//   localStorage.setItem(KEY, JSON.stringify(feedback));
-// }
